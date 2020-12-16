@@ -36,3 +36,10 @@ let getBooksPossessedByAccount = (account, books, authors) => {
 };
 getBooksPossessedByAccount(account, books, authors);
 // console.log(getBooksPossessedByAccount(account, books, authors));
+
+
+
+function compareIdToAccountId(account){
+  if(account.id === id) 
+    return true
+}
