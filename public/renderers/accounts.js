@@ -67,6 +67,7 @@ function booksInPossessionTemplate(books) {
 function renderAccounts() {
   const list = document.querySelector("#accounts-list");
   const result = sortAccountsByLastName(accounts);
+  console.log(result)
   const lis = result.map(accountLinkTemplate).join("");
 
   list.innerHTML = lis;
