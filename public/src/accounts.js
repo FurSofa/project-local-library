@@ -30,8 +30,8 @@ let getBooksPossessedByAccount = (account, books, authors) => {
     book.borrows.forEach((record) => {
       if (account.id === record.id && record.returned === false) {
         let bookCopy = book;
-        for (let i in authors) {
-          let author = authors[i];
+        for (let index in authors) {
+          let author = authors[index];
 
           if (author.id === book.authorId) {
             bookCopy["author"] = author;
