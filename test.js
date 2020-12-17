@@ -1,98 +1,23 @@
-function totalBooksCount(books) {
-  return books.length
-}
+// const accounts = require("./public/data/accounts");
+// const authors = require("./public/data/authors");
+// const books = require("./public/data/books");
 
-function totalAccountsCount(accounts) {
-  return accounts.length
-}
+// const account = {
+//   id: "5f446f2ed92454081fb1999b",
+//   picture: "https://api.adorable.io/avatars/75/ingram.garrison@syntac.net",
+//   age: 29,
+//   name: {
+//     first: "Ingram",
+//     last: "Garrison",
+//   },
+//   company: "SYNTAC",
+//   email: "ingram.garrison@syntac.net",
+//   registered: "Tuesday, February 13, 2018 9:11 PM",
+// };
 
-function booksBorrowedCount(books) {
-  let counter = 0;
-  books.forEach((book) => {
-    if (book.borrows[0].returned === false) counter += 1;
-  });
-  return counter;
-}
+// const partitionBooksByBorrowedStatus = (books) => [
+//   books.filter((book) => !book.borrows[0].returned),
+//   books.filter((book) => book.borrows[0].returned),
+// ];
 
-function getMostCommonGenres(books) {
-  let allGenres = books.map((book) => book.genre);
-  let allGenreObj = allGenres.reduce((acc, genre) => {
-    acc[genre] ? acc[genre]++ : (acc[genre] = 1);
-    return acc;
-  }, {});
-  let rtnArr = []
-  for (const key in allGenreObj) {
-      const element = allGenreObj[key];
-      let newObj = {}
-      newObj["name"] = key
-      newObj["count"] = element
-      rtnArr.push(newObj)
-  }
-  let result = rtnArr.sort((a,b)=> {
-    if (a.count < b.count) return 1
-    if (a.count > b.count) return -1
-    return 0
-  })
-  console.log(result.slice(0,5));
-  return result.slice(0,5)
-}
-
-function getMostPopularBooks (books) {
-
-  let result = [];
-  books.forEach((book) => {
-    let newObj = {};
-    newObj["name"] = book.title;
-    newObj["count"] = book.borrows.length;
-    result.push(newObj);
-  });
-  return sorter(result).slice(0,5)
-}
-
-function sorter(arr) {
-  // Local helper function
-  // receives arr of obj
-  // sorts by obj.count and slice top 5
-  return arr
-    .sort((a, b) => {
-      if (a.count < b.count) return 1;
-      if (a.count > b.count) return -1;
-      return 0;
-    })
-    .slice(0, 5);
-}
-function getAuthorName(authors, id) {
-  let authName = "";
-  authors.forEach((author) => {
-    if (author.id == id) authName = `${author.name.first} ${author.name.last}`;
-  });
-  return authName;
-}
-
-function getMostPopularAuthors(books, authors) {
-  let rtnArr = [];
-  let authorBookCountObj = books.reduce((acc, book) => {
-    acc[book.authorId]
-      ? (acc[book.authorId] += book.borrows.length)
-      : (acc[book.authorId] = book.borrows.length);
-    return acc;
-  }, {});
-  console.log(authorBookCountObj);
-  for (const key in authorBookCountObj) {
-    const value = authorBookCountObj[key];
-    let newObj = {};
-    newObj["name"] = getAuthorName(authors, parseInt(key));
-    newObj["count"] = value;
-    rtnArr.push(newObj);
-  }
-  return sorter(rtnArr);
-}
-
-module.exports = {
-  totalBooksCount,
-  totalAccountsCount,
-  booksBorrowedCount,
-  getMostCommonGenres,
-  getMostPopularBooks,
-  getMostPopularAuthors,
-};
+// partitionBooksByBorrowedStatus(books, "lkajnwrefiuq3bn4kltrjn324");
