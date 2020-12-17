@@ -9,17 +9,17 @@ function findBookById(books, id) {
 }
 
 let partitionBooksByBorrowedStatus = books => {
-  
-  let borrowedBooks = books.filter(book => {
+  //returns two arrays containing borrowd and returned books
+  let borrowedBooks = books.filter(book => {//find all borrowed books
     return book.borrows[0].returned === false;
   })
-  let returnedBooks = books.filter(book => {
+  let returnedBooks = books.filter(book => {//find all returned borrowed books
     return book.borrows[0].returned == true;
   })
   return [borrowedBooks, returnedBooks];
 }
 
-function getBorrowersForBook(book, accounts) {
+function getBorrowersForBook(book, accounts) {// find all borrowers for a book
   let returnArray = [];
   let borrows = book.borrows;
   borrows.forEach((record) => {
